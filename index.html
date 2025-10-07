@@ -18,24 +18,86 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
-        <h1>Tic-Tac-Toe Game</h1>
-        <p>Click on a box to make your move.</p>
-        <div class="container">
-            <div class="game">
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
+    <div class="container">
+        <h1 class="game-title" id="game-title">Tic-Tac-Toe</h1>
+        
+        <div class="game-setup" id="game-setup">
+            <h2>Choose Game Mode</h2>
+            <div class="mode-buttons">
+                <button id="vs-computer" class="mode-btn">vs Computer</button>
+                <button id="pass-play" class="mode-btn">Pass & Play</button>
+            </div>
+            
+            <div class="board-size-selection">
+                <h3>Select Board Size</h3>
+                <div class="size-buttons">
+                    <button class="size-btn selected" data-size="3">3x3</button>
+                    <button class="size-btn" data-size="5">5x5</button>
+                    <button class="size-btn" data-size="7">7x7</button>
+                    <button class="size-btn" data-size="9">9x9</button>
+                </div>
+            </div>
+            
+            <div class="difficulty-selection" id="difficulty-selection" style="display: none;">
+                <h3>Select Difficulty</h3>
+                <div class="difficulty-buttons">
+                    <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+                    <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+                    <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+                </div>
+            </div>
+            
+            <button id="start-game" style="display: none;">Start Game</button>
+        </div>
+        
+        <div class="game-area" id="game-area" style="display: none;">
+            <div class="game-header">
+                <div class="current-player" id="current-player">Player O's Turn</div>
+                <button id="sound-toggle" class="sound-btn" aria-label="Toggle sound effects">
+                    <span id="sound-icon">🔊</span>
+                </button>
+            </div>
+            
+            <div class="scoreboard" role="region" aria-labelledby="scoreboard-title">
+                <h2 id="scoreboard-title" class="sr-only">Game Score</h2>
+                <div class="score-item wins">
+                    <div class="score-label">Player O</div>
+                    <div class="score-value" id="wins" aria-label="Player O wins">0</div>
+                </div>
+                <div class="score-item losses">
+                    <div class="score-label">Player X</div>
+                    <div class="score-value" id="losses" aria-label="Player X wins">0</div>
+                </div>
+                <div class="score-item draws">
+                    <div class="score-label">Draws</div>
+                    <div class="score-value" id="draws" aria-label="Game draws">0</div>
+                </div>
+            </div>
+            
+            <div class="game" id="game-board" role="grid" aria-label="Tic-tac-toe game board" aria-describedby="game-instructions">
+                <!-- Boxes will be generated dynamically -->
+            </div>
+            
+            <div id="game-instructions" class="sr-only">Use arrow keys to navigate the board and Enter or Space to make a move.</div>
+            <div id="game-status" class="sr-only" aria-live="polite"></div>
+            
+            <div class="game-controls">
+                <button id="reset" aria-label="Reset the game board">Reset Game</button>
+                <button id="new-game" aria-label="Start new game">New Game</button>
             </div>
         </div>
-        <button id="reset">Reset Game</button>
-    </main>
+        
+        <!-- Audio elements -->
+        <audio id="move-sound" preload="auto">
+            <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTyZ3O/PbycFLID08teJOQcZaLrO8dmKOAkcYbjr47xeDRATn+Dv" type="audio/wav">
+        </audio>
+        <audio id="win-sound" preload="auto">
+            <source src="data:audio/wav;base64,UklGRvIGAABXQVZFZm1QIBAAAAAABAAgAEAfAABAHwAAAQAIAGRhdGHOBgAAhYWKhWxdX3SYr6yQYTY1YKHQz6thHAY/mtvyw3IlBSyBzvLYiTcIGWi77eefTQAMUKfj8LZjHAY4kddOAgAFAA=" type="audio/wav">
+        </audio>
+        <audio id="draw-sound" preload="auto">
+            <source src="data:audio/wav;base64,UklGRuIGAABXQVZFZm10IBAAAAAEACIAQB8AAEAfAAABAAgAZGF0YZ4GAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTyZ3O/PbycFLIHO8tiJOQcZaLrO8dmKOAkcYbnr47xeDRATn+Dv" type="audio/wav">
+        </audio>
+    </div>
     <script src="script.js" defer></script>
 </body>
 </html>
