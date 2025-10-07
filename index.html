@@ -3,8 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Play the classic Tic-Tac-Toe game online for free. Choose from multiple board sizes (3x3, 5x5, 7x7, 9x9) and play against computer AI or with friends. Features sound effects and accessibility support.">
+    <meta name="keywords" content="tic tac toe, noughts and crosses, online game, puzzle game, strategy game, free game, AI opponent">
+    <meta name="author" content="Your Name">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Tic-Tac-Toe Game - Play Online Free">
+    <meta property="og:description" content="Play the classic Tic-Tac-Toe game with multiple board sizes and AI difficulty levels. Fully accessible and mobile-friendly.">
+    <meta property="og:url" content="https://yoursite.com/tic-tac-toe">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://yoursite.com/tic-tac-toe-preview.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tic-Tac-Toe Game - Play Online Free">
+    <meta name="twitter:description" content="Play the classic Tic-Tac-Toe game with multiple board sizes and AI difficulty levels.">
+    <meta name="twitter:image" content="https://yoursite.com/tic-tac-toe-preview.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yoursite.com/tic-tac-toe">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
     <meta name="google-site-verification" content="Uo9y91VlFBKKwE9rgo3JyBd-iOVcXyJfP3spEyABvp4" />
     <meta name="google-site-verification" content="BFwuYK156p79QUJ8IokHiRD08f8GMG-bqtjheGpqsL8" />
+    
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K14KMHNRRT"></script>
 <script>
@@ -14,13 +42,41 @@
 
   gtag('config', 'G-K14KMHNRRT');
 </script>
-    <title>Tic-Tac-Toe Game</title>
+    
+    <title>Tic-Tac-Toe Game - Play Online Free | Multiple Board Sizes & AI Difficulty</title>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Game",
+        "name": "Tic-Tac-Toe Game",
+        "description": "Play the classic Tic-Tac-Toe game online with multiple board sizes and AI opponents",
+        "url": "https://yoursite.com/tic-tac-toe",
+        "genre": "Strategy Game",
+        "gamePlatform": "Web Browser",
+        "applicationCategory": "Game",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Your Name"
+        }
+    }
+    </script>
 </head>
 <body>
-    <div class="container">
-        <h1 class="game-title" id="game-title">Tic-Tac-Toe</h1>
-        
+    <header>
+        <h1 class="game-title" id="game-title">Tic-Tac-Toe Game</h1>
+        <p class="game-subtitle">Play the classic strategy game with multiple board sizes and AI difficulty levels</p>
+    </header>
+    
+    <main class="container">
         <div class="game-setup" id="game-setup">
             <h2>Choose Game Mode</h2>
             <div class="mode-buttons">
@@ -97,7 +153,12 @@
         <audio id="draw-sound" preload="auto">
             <source src="data:audio/wav;base64,UklGRuIGAABXQVZFZm10IBAAAAAEACIAQB8AAEAfAAABAAgAZGF0YZ4GAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTyZ3O/PbycFLIHO8tiJOQcZaLrO8dmKOAkcYbnr47xeDRATn+Dv" type="audio/wav">
         </audio>
-    </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Tic-Tac-Toe Game. Free to play online game.</p>
+    </footer>
+    
     <script src="script.js" defer></script>
 </body>
 </html>

@@ -31,6 +31,13 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.game-subtitle {
+    font-size: 1.1rem;
+    color: #bdc3c7;
+    margin-top: 0.5rem;
+    font-weight: 300;
+}
+
 .scoreboard {
     display: flex;
     gap: 30px;
@@ -392,6 +399,10 @@ body {
         font-size: 2rem;
     }
     
+    .game-subtitle {
+        font-size: 1rem;
+    }
+    
     .scoreboard {
         gap: 20px;
         padding: 12px 20px;
@@ -464,6 +475,11 @@ body {
         width: 45px;
         height: 45px;
         font-size: 1.3rem;
+    }
+    
+    footer {
+        font-size: 0.8rem;
+        padding: 0.8rem;
     }
 }
 
@@ -554,4 +570,18 @@ body {
 .size-btn.selected {
     background: #f39c12;
     color: white;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+footer {
+    margin-top: 2rem;
+    padding: 1rem;
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }

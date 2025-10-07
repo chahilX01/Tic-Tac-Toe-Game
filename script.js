@@ -764,19 +764,3 @@ createGameBoard(3);
 // Initialize scoreboard
 updateScoreboard();
 updateGameStatus("Game started. Player O's turn.");
-
-function initializeGame() {
-    createGameBoard(boardSize);
-    turn0 = true;
-    gameActive = true;
-    isComputerTurn = false;
-    currentFocus = 0;
-    updateCurrentPlayer();
-    updateGameStatus("Game started!");
-    if (boxes.length > 0) {
-        updateFocus();
-    }
-    
-    // Initialize audio context on first user interaction
-    createAudioContext();
-}
