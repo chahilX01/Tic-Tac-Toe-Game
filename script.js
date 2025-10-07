@@ -6,17 +6,53 @@ let gameActive = true;
 let boardSize = 3;
 let winCondition = 3; // Number in a row needed to win
 let scores = {
-    playerO: 0,
-    playerX: 0,
-    draws: 0
+    passPlay: {
+        playerO: 0,
+        playerX: 0,
+        draws: 0
+    },
+    computer: {
+        wins: 0,
+        losses: 0,
+        draws: 0
+    }
 };
 
 let winningpatterns = [];
 
 function updateScoreboard() {
-    document.getElementById('wins').textContent = scores.playerO;
-    document.getElementById('losses').textContent = scores.playerX;
-    document.getElementById('draws').textContent = scores.draws;
+    const winsElement = document.getElementById('wins');
+    const lossesElement = document.getElementById('losses');
+    const drawsElement = document.getElementById('draws');
+    
+    if (gameMode === 'computer') {
+        winsElement.textContent = scores.computer.wins;
+        lossesElement.textContent = scores.computer.losses;
+        drawsElement.textContent = scores.computer.draws;
+    } else {
+        winsElement.textContent = scores.passPlay.playerO;
+        lossesElement.textContent = scores.passPlay.playerX;
+        drawsElement.textContent = scores.passPlay.draws;
+    }
+}
+
+function updateScoreboardLabels() {
+    const winsLabel = document.querySelector('.score-item.wins .score-label');
+    const lossesLabel = document.querySelector('.score-item.losses .score-label');
+    const winsValue = document.getElementById('wins');
+    const lossesValue = document.getElementById('losses');
+    
+    if (gameMode === 'computer') {
+        winsLabel.textContent = 'Your Wins';
+        lossesLabel.textContent = 'Computer Wins';
+        winsValue.setAttribute('aria-label', 'Your wins against computer');
+        lossesValue.setAttribute('aria-label', 'Computer wins against you');
+    } else {
+        winsLabel.textContent = 'Player O';
+        lossesLabel.textContent = 'Player X';
+        winsValue.setAttribute('aria-label', 'Player O wins');
+        lossesValue.setAttribute('aria-label', 'Player X wins');
+    }
 }
 
 function checkDraw() {
@@ -90,14 +126,26 @@ function checkWinner() {
             generateWinSound();
             
             const winner = firstValue;
-            if (winner === "O") {
-                scores.playerO++;
-                updateGameStatus("Player O wins!");
-                setTimeout(() => alert(`🎉 Congratulations! Player O wins with ${winCondition} in a row! 🎉`), 100);
+            if (gameMode === 'computer') {
+                if (winner === "O") {
+                    scores.computer.wins++;
+                    updateGameStatus("You win!");
+                    setTimeout(() => showGameMessage("🎉 Victory!", `Congratulations! You win with ${winCondition} in a row!`), 100);
+                } else {
+                    scores.computer.losses++;
+                    updateGameStatus("Computer wins!");
+                    setTimeout(() => showGameMessage("🤖 Computer Wins", `Computer wins with ${winCondition} in a row! Better luck next time!`), 100);
+                }
             } else {
-                scores.playerX++;
-                updateGameStatus("Player X wins!");
-                setTimeout(() => alert(`🎉 Congratulations! Player X wins with ${winCondition} in a row! 🎉`), 100);
+                if (winner === "O") {
+                    scores.passPlay.playerO++;
+                    updateGameStatus("Player O wins!");
+                    setTimeout(() => showGameMessage("🎉 Player O Wins!", `Congratulations! Player O wins with ${winCondition} in a row!`), 100);
+                } else {
+                    scores.passPlay.playerX++;
+                    updateGameStatus("Player X wins!");
+                    setTimeout(() => showGameMessage("🎉 Player X Wins!", `Congratulations! Player X wins with ${winCondition} in a row!`), 100);
+                }
             }
             updateScoreboard();
             return true;
@@ -106,7 +154,11 @@ function checkWinner() {
     
     if (checkDraw()) {
         gameActive = false;
-        scores.draws++;
+        if (gameMode === 'computer') {
+            scores.computer.draws++;
+        } else {
+            scores.passPlay.draws++;
+        }
         updateGameStatus("It's a draw!");
         updateScoreboard();
         
@@ -114,10 +166,10 @@ function checkWinner() {
         generateDrawSound();
         
         let drawMessage = boardSize === 3 ? 
-            "🤝 It's a draw! 🤝" : 
-            `🤝 It's a draw! No more winning moves possible! 🤝`;
+            "It's a draw! All squares are filled with no winner." : 
+            "It's a draw! No more winning moves are possible.";
         
-        setTimeout(() => alert(drawMessage), 100);
+        setTimeout(() => showGameMessage("🤝 Draw Game", drawMessage), 100);
         return true;
     }
     
@@ -567,6 +619,8 @@ function initializeGame() {
     isComputerTurn = false;
     currentFocus = 0;
     updateCurrentPlayer();
+    updateScoreboardLabels();
+    updateScoreboard();
     updateGameStatus("Game started!");
     if (boxes.length > 0) {
         updateFocus();
@@ -700,6 +754,8 @@ function initializeGame() {
     isComputerTurn = false;
     currentFocus = 0;
     updateCurrentPlayer();
+    updateScoreboardLabels();
+    updateScoreboard();
     updateGameStatus("Game started!");
     if (boxes.length > 0) {
         updateFocus();
@@ -764,3 +820,33 @@ createGameBoard(3);
 // Initialize scoreboard
 updateScoreboard();
 updateGameStatus("Game started. Player O's turn.");
+
+// Game message elements
+const gameMessage = document.getElementById('game-message');
+const messageTitle = document.getElementById('message-title');
+const messageText = document.getElementById('message-text');
+const messageClose = document.getElementById('message-close');
+
+function showGameMessage(title, message) {
+    messageTitle.textContent = title;
+    messageText.textContent = message;
+    gameMessage.style.display = 'flex';
+}
+
+function hideGameMessage() {
+    gameMessage.style.display = 'none';
+}
+
+// Message close button event listener
+if (messageClose) {
+    messageClose.addEventListener('click', hideGameMessage);
+}
+
+// Close message when clicking outside the content
+if (gameMessage) {
+    gameMessage.addEventListener('click', (e) => {
+        if (e.target === gameMessage) {
+            hideGameMessage();
+        }
+    });
+}

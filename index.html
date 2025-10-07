@@ -73,20 +73,20 @@
 <body>
     <header>
         <h1 class="game-title" id="game-title">Tic-Tac-Toe Game</h1>
-        <p class="game-subtitle">Play the classic strategy game with multiple board sizes and AI difficulty levels</p>
+        <p class="game-subtitle" role="doc-subtitle">Play the classic strategy game with multiple board sizes and AI difficulty levels</p>
     </header>
     
     <main class="container">
-        <div class="game-setup" id="game-setup">
-            <h2>Choose Game Mode</h2>
-            <div class="mode-buttons">
+        <div class="game-setup" id="game-setup" role="main">
+            <h2 id="game-mode-heading">Choose Game Mode</h2>
+            <div class="mode-buttons" role="group" aria-labelledby="game-mode-heading">
                 <button id="vs-computer" class="mode-btn">vs Computer</button>
                 <button id="pass-play" class="mode-btn">Pass & Play</button>
             </div>
             
             <div class="board-size-selection">
-                <h3>Select Board Size</h3>
-                <div class="size-buttons">
+                <h3 id="board-size-heading">Select Board Size</h3>
+                <div class="size-buttons" role="group" aria-labelledby="board-size-heading">
                     <button class="size-btn selected" data-size="3">3x3</button>
                     <button class="size-btn" data-size="5">5x5</button>
                     <button class="size-btn" data-size="7">7x7</button>
@@ -95,8 +95,8 @@
             </div>
             
             <div class="difficulty-selection" id="difficulty-selection" style="display: none;">
-                <h3>Select Difficulty</h3>
-                <div class="difficulty-buttons">
+                <h3 id="difficulty-heading">Select Difficulty</h3>
+                <div class="difficulty-buttons" role="group" aria-labelledby="difficulty-heading">
                     <button class="difficulty-btn" data-difficulty="easy">Easy</button>
                     <button class="difficulty-btn" data-difficulty="medium">Medium</button>
                     <button class="difficulty-btn" data-difficulty="hard">Hard</button>
@@ -112,6 +112,15 @@
                 <button id="sound-toggle" class="sound-btn" aria-label="Toggle sound effects">
                     <span id="sound-icon">🔊</span>
                 </button>
+            </div>
+            
+            <!-- Game Message Display -->
+            <div id="game-message" class="game-message" style="display: none;">
+                <div class="message-content">
+                    <h3 id="message-title">Game Over</h3>
+                    <p id="message-text">Result message</p>
+                    <button id="message-close" class="message-btn">Continue</button>
+                </div>
             </div>
             
             <div class="scoreboard" role="region" aria-labelledby="scoreboard-title">
